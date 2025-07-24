@@ -1,5 +1,6 @@
 'use client'
 import RaceSpeedDashboard from "@/components/ui/SpeedDb-interface"
+
 export default function SpeedDB() {
   return(
     <div>

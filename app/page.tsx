@@ -149,7 +149,7 @@ export default function Home() {
             <li><a href='SpeedDB'>SpeedDB</a></li>
             <li><a href=''>About</a></li>
             <li><a href=''>Contact</a></li>
-            <li><a href='/pages'>Login</a></li>
+            <li><a href='/login'>Login</a></li>
           </ul>
         </div>
 
