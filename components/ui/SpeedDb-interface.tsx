@@ -3,32 +3,67 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../../lib/supabaseClient' // Adjust path as needed
 
-function RaceSelector({ onRaceSelect, selectedRaceId }) {
-  const [races, setRaces] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [searchTerm, setSearchTerm] = useState('')
+// Type definitions
+interface Race {
+  id: number
+  race_name: string
+  track: string
+  date: string
+  weather: string
+}
+
+interface Corner {
+  id: number
+  corner_name: string
+  speed_kph: number
+  track: string
+  session_id?: number
+  speed_type?: 'High' | 'Medium' | 'Low'
+}
+
+interface RaceSelectorProps {
+  onRaceSelect: (race: Race) => void
+  selectedRaceId: number | null
+}
+
+interface CornerSpeedTableProps {
+  sessionId: number | null
+  raceName: string | null
+}
+
+function RaceSelector({ onRaceSelect, selectedRaceId }: RaceSelectorProps) {
+  const [races, setRaces] = useState<Race[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
+  const [searchTerm, setSearchTerm] = useState<string>('')
 
   useEffect(() => {
     const fetchRaces = async () => {
       setLoading(true)
-      const { data, error } = await supabase
-        .from('races')
-        .select('id, race_name, track, date, weather')
+      try {
+        const { data, error } = await supabase
+          .from('races')
+          .select('id, race_name, track, date, weather')
 
-      if (error) {
-        console.error('Error fetching races:', error.message)
-      } else {
-        setRaces(data || [])
+        if (error) {
+          console.error('Error fetching races:', error.message)
+          setRaces([])
+        } else {
+          setRaces(data || [])
+        }
+      } catch (err) {
+        console.error('Unexpected error fetching races:', err)
+        setRaces([])
+      } finally {
+        setLoading(false)
       }
-      setLoading(false)
     }
 
     fetchRaces()
   }, [])
 
   const filteredRaces = races.filter(race =>
-    race.race_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    race.track.toLowerCase().includes(searchTerm.toLowerCase())
+    race.race_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    race.track?.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
   if (loading) {
@@ -88,14 +123,17 @@ function RaceSelector({ onRaceSelect, selectedRaceId }) {
   )
 }
 
-function CornerSpeedTable({ sessionId, raceName }) {
-  const [corners, setCorners] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+function CornerSpeedTable({ sessionId, raceName }: CornerSpeedTableProps) {
+  const [corners, setCorners] = useState<Corner[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchCornerSpeeds = async () => {
-      if (!sessionId) return
+      if (!sessionId) {
+        setLoading(false)
+        return
+      }
 
       setLoading(true)
       setError(null)
@@ -111,16 +149,18 @@ function CornerSpeedTable({ sessionId, raceName }) {
           throw new Error(high.error?.message || medium.error?.message || low.error?.message)
         }
 
-        const combined = [
-          ...(high.data || []).map(c => ({ ...c, speed_type: 'High' })),
-          ...(medium.data || []).map(c => ({ ...c, speed_type: 'Medium' })),
-          ...(low.data || []).map(c => ({ ...c, speed_type: 'Low' }))
+        const combined: Corner[] = [
+          ...(high.data || []).map((c: Corner) => ({ ...c, speed_type: 'High' as const })),
+          ...(medium.data || []).map((c: Corner) => ({ ...c, speed_type: 'Medium' as const })),
+          ...(low.data || []).map((c: Corner) => ({ ...c, speed_type: 'Low' as const }))
         ]
 
         combined.sort((a, b) => b.speed_kph - a.speed_kph)
         setCorners(combined)
       } catch (err) {
-        setError(err.message || 'Error loading corner data')
+        const errorMessage = err instanceof Error ? err.message : 'Error loading corner data'
+        setError(errorMessage)
+        setCorners([])
       } finally {
         setLoading(false)
       }
@@ -160,7 +200,7 @@ function CornerSpeedTable({ sessionId, raceName }) {
 
   return (
     <div className="bg-white rounded-lg shadow-sm border p-6">
-      <h2 className="text-xl font-semibold mb-2">Corner Speeds – {raceName}</h2>
+      <h2 className="text-xl font-semibold mb-2">Corner Speeds – {raceName || 'Unknown Race'}</h2>
       <p className="text-sm text-gray-600 mb-4">
         Total corners: {corners.length} | 
         High: {corners.filter(c => c.speed_type === 'High').length} | 
@@ -182,8 +222,8 @@ function CornerSpeedTable({ sessionId, raceName }) {
               </tr>
             </thead>
             <tbody>
-              {corners.map(c => (
-                <tr key={`${c.speed_type}-${c.id}`} className="hover:bg-gray-50">
+              {corners.map((c, index) => (
+                <tr key={`${c.speed_type}-${c.id}-${index}`} className="hover:bg-gray-50">
                   <td className="border px-4 py-2">{c.corner_name}</td>
                   <td className="border px-4 py-2 text-center">{c.speed_kph.toFixed(1)}</td>
                   <td className="border px-4 py-2 text-center">
@@ -209,20 +249,19 @@ function CornerSpeedTable({ sessionId, raceName }) {
 }
 
 export default function RaceSpeedDashboard() {
-  const [selectedRace, setSelectedRace] = useState(null)
+  const [selectedRace, setSelectedRace] = useState<Race | null>(null)
 
   return (
     <div className="h-screen bg-gray-50 p-4 pt-40 relative">
       <div className="max-w-7xl mx-auto space-y-6">
-
         <div className="grid lg:grid-cols-2 gap-6">
           <RaceSelector
             onRaceSelect={setSelectedRace}
-            selectedRaceId={selectedRace?.id}
+            selectedRaceId={selectedRace?.id || null}
           />
           <CornerSpeedTable
-            sessionId={selectedRace?.id}
-            raceName={selectedRace?.race_name}
+            sessionId={selectedRace?.id || null}
+            raceName={selectedRace?.race_name || null}
           />
         </div>
       </div>
