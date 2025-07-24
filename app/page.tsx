@@ -9,14 +9,12 @@ import { ChevronRight, ChevronLeft, Settings, User, Mail, FileText } from 'lucid
 
 const navigation = [
   { name: 'Latest', href: '/', current: false, id: 1 },
-  { name: 'Motorsport', href: '/Motorsport', current: false, id: 2 },
-  { name: 'Tech', href: '/', current: false, id: 3 },
-  { name: 'gaming', href: '/Reviews/Gaming', current: true, id: 4 },
-  { name: 'Reviews', href: '/Reviews', current: true, id: 5 },
-  { name: 'Formula 1 Analysis', href: 'not-found', current: true, id: 6 },
-  { name: 'Contact', href: '/Contact', current: true, id: 7 },
-  { name: 'Newsletter', href: '#Newsletter', current: true, id: 8 },
+  { name: 'SpeedDB', href: '/SpeedDB', current: false, id: 2 },
+  { name: 'About', href: '/', current: false, id: 3 },
+  { name: 'Contact', href: '/', current: true, id: 4 },
+  { name: 'Login', href: '/Login', current: true, id: 5 },
 ];
+
 import Image from "next/image";
 
 export default function Home() {
@@ -25,49 +23,27 @@ export default function Home() {
   const toggleSidebar = () => setIsOpen(!isOpen);
 
   return (
-    <div className='w-screen h-screen fixed'>
-        <header className="bg-white text-black relative w-full">
+    <div>
+        <header className=" text-background relative z-50 w-full bg-foreground">
           <span className="text-6xl relative">
             <a href='/'>
-             <h1 className="font-fasterOne pt-5 w-auto hover:scale-95 pl-5 duration-350">Formula Analysis Dashboard</h1>
+             <h1 className="font-fasterOne pt-5 w-auto hover:scale-95 pl-5 max-sm:pl-0 duration-350">Formula Analysis Dashboard</h1>
             </a>
           </span>
-          <nav aria-label="Global" className="flex items-center justify-between lg:px-8 h-20 border-b-2">
-          <div className="absolute right-5 pt-10 pr-5 max-md:pr-0 max-md:right-0 max-md:pt-25">
+          <nav aria-label="Global" className="flex items-center justify-between lg:px-8 h-20">
+          <span className='font-electrolize text-2xl md:w-160'>First open formula 1 database to browse average speed on words fastest and slowest corners</span>
+            <div className="absolute right-5 pt-10 pr-5 max-md:pr-0 max-md:right-0 max-md:pt-25">
             <button
             id='openBtn'
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="bottom-25 relative icon-default inline-flex items-center justify-center rounded-md p-2.5 z-50 animation duration-300 transform transition-all"
+              className="bottom-5 max-sm:bottom-10 relative max-sm:block md:block lg:hidden icon-default inline-flex items-center justify-center rounded-md p-2.5 text-white z-50 animation duration-300 transform transition-all"
             >
               <span className="sr-only">Open main menu</span>
-              <Bars3Icon aria-hidden="true" className="size-10 block hover:-scale-y-110 md:hidden sm:block animation duration-300 transition-all transform" />
+              <Bars3Icon aria-hidden="true" className="size-10 block hover:-scale-y-110 animation duration-300 transition-all transform" />
 
             </button>
           </div>
-           <ul className='flex max-sm:hidden gap-x-10 sm:gap-x-10 items-baseline right-0 max-md:hidden relative lg:bottom-25 top-0 text-xl'>
-            <li>
-              <a href='#Latest' className='hover-underline-animation center'>latest</a>
-            </li>
-            <li>
-              <a href='/Motorsport' className='hover-underline-animation center'>Motorsport</a>
-            </li>
-            <li>
-              <a href='/Reviews' className='hover-underline-animation center'>Reviews</a>
-            </li>
-            <li>
-              <a href='/Reviews/Gaming' className='hover-underline-animation center'>Gaming</a>
-            </li>
-            <li>
-              <a href='#Newsletter' className='hover-underline-animation center'>Newsletter</a>
-            </li>
-            <li>
-              <a href='/Contact' className='hover-underline-animation center'>Contact</a>
-            </li>
-            <li>
-              <a href='../Admin' className='hover-underline-animation center'>Admin</a>
-            </li>
-          </ul>
         </nav>
        <AnimatePresence>
         {mobileMenuOpen && (
@@ -81,19 +57,11 @@ export default function Home() {
           className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto opacity-10 text-center text-white bg-black/50 px-6 py-6 sm:max-w-full sm:ring-1 sm:ring-gray-900/10"
         >
       <DialogPanel>
-      <div className="flex items-center justify-between">
-        <a href="/" className="-m-1.5 p-1.5">
-          <span className="sr-only">Your Company</span>
-          <img
-            alt="mobileIcon"
-            src="./mobileIcon-black.png"
-            className="h-20 w-auto"
-          />
-        </a>
+      <div className="flex items-end justify-end">
         <button
           type="button"
           onClick={() => setMobileMenuOpen(false)}
-          className=" rounded-md pr-4 pb-12 text-white hover:text-red-500 transition-all duration-300"
+          className=" rounded-md relative pr-4 pb-12 max-sm:pb-0 max-sm:pt-20 text-white hover:text-red-500 transition-all duration-300"
         >
           <span className="sr-only">Close menu</span>
           <XMarkIcon aria-hidden="true" className="size-10 hover:rotate-180 duration-300" />
@@ -114,67 +82,34 @@ export default function Home() {
           </div>
         </div>  
       </div>
-        <div className='flex flex-col-2 gap-x-10 items-center left-145 max-sm:left-12 w-100 max-sm:w-0 relative pt-5'>
-        <span>
-          <a href='/'>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className='size-12'>
-            <path fill="#ffffff" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
-            </svg>
-          </a>
-          </span>
-        <span>
-          <a href='/'>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className='size-12 hover:text-black'>
-            <path fill="#ffffff" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/>
-            </svg>
-          </a>
-          </span>
-        <span>
-          <a href='/'>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className='size-12'>
-          <path fill='#ffffff' d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z"/>
-          </svg>
-          </a>
-          </span>
-        </div>
       </DialogPanel>
     </motion.div>
   </Dialog>
         )}
 </AnimatePresence>
-        </header>
-        <div className='fixed w-64 h-full bg-white'>
-          <ul className='text-4xl grid grid-cols-1 p-8 pt-10 gap-y-10'>
-            <li><a href='' className='relative'>Latest race telemetry</a></li>
-            <li><a href='SpeedDB'>SpeedDB</a></li>
-            <li><a href=''>About</a></li>
-            <li><a href=''>Contact</a></li>
-            <li><a href='/login'>Login</a></li>
+        <div className='relative w-64 h-full z-50 bg-foreground'>
+          <ul className='text-4xl gap-30 m-5 pb-3 gap-y-10 max-sm:hidden md:hidden lg:flex max-md:flex'>
+            <li><a href='#Latest' className='hover:text-white duration-300'>Latest</a></li>
+            <li><a href='SpeedDB' className='hover:text-white duration-300'>SpeedDB</a></li>
+            <li><a href='/About' className='hover:text-white duration-300'>About</a></li>
+            <li><a href='/' className='hover:text-white duration-300'>Contact</a></li>
+            <li><a href='/login' className='hover:text-white duration-300'>Login</a></li>
           </ul>
         </div>
+        </header>
 
-        <div className='grid grid-cols-1 gap-y-20  overflow-y-scroll'>
-          <div className='w-140 left-110'>
+        <div className='grid grid-cols-2 h-screen relative items-start justify-start right-90 max-sm:right-108' id='Latest'>
+          <div className='w-140 max-sm:w-95 hover:opacity-80 duration-300'>
             <img src="/assets/2025/BritishGP/R/team_Pace.png"
-            className='overflow-hidden w-140 h-75 relative top-15 left-110'/>
-            <p className='relative z-10 text-white left-110 top-15 text-center w-140 bg-white/20'>2025 British Grand Prix Analysis</p>
-          </div>
-          <div className='w-140 left-110'>
-            <img src="/assets/2025/BritishGP/R/team_Pace.png"
-            className='overflow-hidden w-140 h-75 relative top-30 left-110'/>
-            <p className='relative z-10 text-white left-110 top-15 text-center w-140 bg-white/20'>2025 British Grand Prix Analysis</p>
-          </div>
-          <div className='w-140 left-110'>
-            <img src="/assets/2025/BritishGP/R/team_Pace.png"
-            className='overflow-hidden w-140 h-75 relative top-45 left-110'/>
-            <p className='relative z-10 text-white left-110 top-15 text-center w-140 bg-white/20'>2025 British Grand Prix Analysis</p>
-          </div>
-          <div className='w-140 left-110'>
-            <img src="/assets/2025/BritishGP/R/team_Pace.png"
-            className='overflow-hidden w-140 h-75 relative top-60 left-110'/>
-            <p className='relative z-10 text-white left-110 top-15 text-center w-140 bg-white/20'>2025 British Grand Prix Analysis</p>
+            className='w-140 h-75 relative top-15 left-110'/>
+            <p className='relative z-10 text-white left-110 top-15 text-center w-140 max-sm:w-95 bg-white/20'>2025 British Grand Prix Analysis</p>
           </div>
         </div>
+
+        <footer>
+          <span className='bg-foreground text-white text-center items-baseline justify-baseline w-full absolute'>
+            Copyright © All right reserved by MHBlog and Maxim harvančík</span>
+        </footer>
   </div>
   );
 }

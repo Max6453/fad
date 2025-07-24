@@ -245,7 +245,7 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md max-w-3xl mx-auto mt-6">
+    <div className="bg-foreground p-6 rounded-lg shadow-md max-w-3xl mx-auto pt-5 text-background">
       <h2 className="text-2xl font-bold mb-4">Admin – Add Race & Corners</h2>
 
       {/* Race Info */}
@@ -275,7 +275,7 @@ export default function AdminDashboard() {
           />
           <input 
             type="date" 
-            className="input p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
+            className="input p-2 border bg-foreground rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
             value={raceData.date} 
             onChange={(e) => setRaceData({ ...raceData, date: e.target.value })}
             disabled={isLoading}
@@ -295,7 +295,7 @@ export default function AdminDashboard() {
         <h3 className="text-lg font-semibold mb-3">Add Corner</h3>
         <div className="grid gap-4">
           <select 
-            className="input p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
+            className="input p-2 border bg-foreground rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
             value={currentCorner.speedType} 
             onChange={(e) => setCurrentCorner({ ...currentCorner, speedType: e.target.value as SpeedType })}
             disabled={isLoading}

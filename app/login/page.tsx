@@ -25,6 +25,7 @@ export default function LoginPage() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <h3 className='flex absolute top-50 font-electrolize'>This page is dedicated to admin only</h3>
       <form
         onSubmit={handleLogin}
         className="bg-white p-8 rounded-2xl shadow-md w-80 space-y-4"

@@ -68,7 +68,7 @@ function RaceSelector({ onRaceSelect, selectedRaceId }: RaceSelectorProps) {
 
   if (loading) {
     return (
-      <div className="bg-white rounded-lg shadow-sm border p-6">
+      <div className="text-background rounded-lg shadow-sm border p-6">
         <div className="animate-pulse space-y-3">
           <div className="h-4 bg-gray-200 rounded w-1/4 mb-4"></div>
           <div className="h-10 bg-gray-200 rounded"></div>
@@ -80,7 +80,7 @@ function RaceSelector({ onRaceSelect, selectedRaceId }: RaceSelectorProps) {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border p-6">
+    <div className="text-background rounded-lg shadow-sm border p-6">
       <h2 className="text-xl font-semibold mb-4">Select Race Session</h2>
 
       <input
@@ -103,12 +103,12 @@ function RaceSelector({ onRaceSelect, selectedRaceId }: RaceSelectorProps) {
               onClick={() => onRaceSelect(race)}
               className={`p-4 rounded-lg border-2 cursor-pointer transition-all hover:shadow-md ${
                 selectedRaceId === race.id
-                  ? 'border-blue-500 bg-blue-50'
+                  ? 'border-blue-500 '
                   : 'border-gray-200 hover:border-gray-300'
               }`}
             >
-              <h3 className="font-semibold text-gray-900">{race.race_name}</h3>
-              <p className="text-sm text-gray-600 mt-1">
+              <h3 className="font-semibold text-background">{race.race_name}</h3>
+              <p className="text-sm text-background mt-1">
                 <span className="font-medium">Track:</span> {race.track}
               </p>
               <div className="flex gap-4 mt-2 text-xs text-gray-500">
@@ -171,27 +171,27 @@ function CornerSpeedTable({ sessionId, raceName }: CornerSpeedTableProps) {
 
   if (!sessionId) {
     return (
-      <div className="bg-white rounded-lg shadow-sm border p-8 text-center text-gray-500">
+      <div className="text-background rounded-lg shadow-sm border p-8 text-center">
         <div className="text-4xl mb-2">🏁</div>
-        <h3 className="text-lg font-medium">Select a Race Session</h3>
-        <p className="text-sm">Choose a race to view corner speed data.</p>
+        <h3 className="text-lg font-medium text-background">Select a Race Session</h3>
+        <p className="text-sm text-background">Choose a race to view corner speed data.</p>
       </div>
     )
   }
 
   if (loading) {
     return (
-      <div className="bg-white rounded-lg shadow-sm border p-6 animate-pulse space-y-4">
-        <div className="h-6 bg-gray-200 w-1/3 rounded"></div>
-        <div className="h-4 bg-gray-200 rounded"></div>
-        <div className="h-4 bg-gray-200 w-5/6 rounded"></div>
+      <div className="text-background rounded-lg shadow-sm border p-6 animate-pulse space-y-4">
+        <div className="h-6  w-1/3 rounded"></div>
+        <div className="h-4  rounded"></div>
+        <div className="h-4  w-5/6 rounded"></div>
       </div>
     )
   }
 
   if (error) {
     return (
-      <div className="bg-white rounded-lg shadow-sm border p-6 text-red-600">
+      <div className="rounded-lg shadow-sm border p-6 text-red-600">
         <h3 className="text-red-800 font-medium">Error</h3>
         <p className="text-sm">{error}</p>
       </div>
@@ -199,7 +199,7 @@ function CornerSpeedTable({ sessionId, raceName }: CornerSpeedTableProps) {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border p-6">
+    <div className="text-background rounded-lg shadow-sm border p-6">
       <h2 className="text-xl font-semibold mb-2">Corner Speeds – {raceName || 'Unknown Race'}</h2>
       <p className="text-sm text-gray-600 mb-4">
         Total corners: {corners.length} | 
@@ -213,7 +213,7 @@ function CornerSpeedTable({ sessionId, raceName }: CornerSpeedTableProps) {
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full table-auto border border-gray-300 text-sm">
-            <thead className="bg-gray-100">
+            <thead className="">
               <tr>
                 <th className="border px-4 py-2 text-left">Corner</th>
                 <th className="border px-4 py-2 text-center">Speed (km/h)</th>
@@ -223,7 +223,7 @@ function CornerSpeedTable({ sessionId, raceName }: CornerSpeedTableProps) {
             </thead>
             <tbody>
               {corners.map((c, index) => (
-                <tr key={`${c.speed_type}-${c.id}-${index}`} className="hover:bg-gray-50">
+                <tr key={`${c.speed_type}-${c.id}-${index}`} className="">
                   <td className="border px-4 py-2">{c.corner_name}</td>
                   <td className="border px-4 py-2 text-center">{c.speed_kph.toFixed(1)}</td>
                   <td className="border px-4 py-2 text-center">
@@ -252,9 +252,9 @@ export default function RaceSpeedDashboard() {
   const [selectedRace, setSelectedRace] = useState<Race | null>(null)
 
   return (
-    <div className="h-screen bg-gray-50 p-4 pt-40 relative">
+    <div className="h-full lg:h-screen bg-foreground w-auto text-background pt-20 relative">
       <div className="max-w-7xl mx-auto space-y-6">
-        <div className="grid lg:grid-cols-2 gap-6">
+        <div className="grid h-full lg:grid-cols-2 gap-6">
           <RaceSelector
             onRaceSelect={setSelectedRace}
             selectedRaceId={selectedRace?.id || null}
@@ -265,6 +265,10 @@ export default function RaceSpeedDashboard() {
           />
         </div>
       </div>
+         <footer>
+          <span className='bg-foreground text-white justify-items-center text-center lg:left-124 lg:top-60 w-screen justify-center items-center relative'>
+            Copyright © All right reserved by MHBlog and Maxim harvančík</span>
+        </footer>
     </div>
   )
 }
