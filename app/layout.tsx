@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Viewport } from "next";
 import { Faster_One, Electrolize } from "next/font/google";
 import "./globals.css";
 
@@ -18,6 +19,15 @@ export const metadata: Metadata = {
   title: "FAD | Dashboard",
   description: "Open F1 Database to view cornering speeds across many famous corners ",
 };
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  // Also supported but less commonly used
+  // interactiveWidget: 'resizes-visual',
+}
 
 export default function RootLayout({
   children,

@@ -25,19 +25,19 @@ export default function Home() {
   return (
     <div>
         <header className=" text-background relative z-50 w-full bg-foreground">
-          <span className="text-6xl relative">
+          <span className="text-6xl max-sm:text-5xl relative">
             <a href='/'>
              <h1 className="font-fasterOne pt-5 w-auto hover:scale-95 pl-5 max-sm:pl-0 duration-350">Formula Analysis Dashboard</h1>
             </a>
           </span>
-          <nav aria-label="Global" className="flex items-center justify-between lg:px-8 h-20">
+          <nav aria-label="Global" className="flex items-center justify-between lg:px-8 h-20 max-sm:h-30">
           <span className='font-electrolize text-2xl md:w-160'>First open formula 1 database to browse average speed on words fastest and slowest corners</span>
             <div className="absolute right-5 pt-10 pr-5 max-md:pr-0 max-md:right-0 max-md:pt-25">
             <button
             id='openBtn'
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="bottom-5 max-sm:bottom-10 relative max-sm:block md:block lg:hidden icon-default inline-flex items-center justify-center rounded-md p-2.5 text-white z-50 animation duration-300 transform transition-all"
+              className="bottom-5 max-sm:bottom-5 relative max-sm:block md:block lg:hidden icon-default inline-flex items-center justify-center rounded-md p-2.5 text-white z-50 animation duration-300 transform transition-all"
             >
               <span className="sr-only">Open main menu</span>
               <Bars3Icon aria-hidden="true" className="size-10 block hover:-scale-y-110 animation duration-300 transition-all transform" />
@@ -69,7 +69,7 @@ export default function Home() {
       </div>
       <div className="flow-root">
         <div className="divide-y divide-gray-500/10">
-          <div className=" grid grid-cols-2 max-sm:grid-cols-1 pr-5 max-sm:pr-0">
+          <div className=" grid grid-cols-2 max-sm:grid-cols-1 pr-5">
             {navigation.map((item) => (
               <a
                 key={`${item.name}-${item.href}`}
@@ -98,11 +98,11 @@ export default function Home() {
         </div>
         </header>
 
-        <div className='grid grid-cols-2 h-screen relative items-start justify-start right-90 max-sm:right-108' id='Latest'>
-          <div className='w-140 max-sm:w-95 hover:opacity-80 duration-300'>
+        <div className='grid grid-cols-2 h-screen relative items-start justify-start right-90 max-sm:right-110' id='Latest'>
+          <div className='w-140 max-sm:w-90 hover:opacity-80 duration-300'>
             <img src="/assets/2025/BritishGP/R/team_Pace.png"
             className='w-140 h-75 relative top-15 left-110'/>
-            <p className='relative z-10 text-white left-110 top-15 text-center w-140 max-sm:w-95 bg-white/20'>2025 British Grand Prix Analysis</p>
+            <p className='relative z-10 text-white left-110 top-15 text-center w-140 max-sm:w-90 bg-white/20'>2025 British Grand Prix Analysis</p>
           </div>
         </div>
 

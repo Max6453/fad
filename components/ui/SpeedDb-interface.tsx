@@ -68,7 +68,7 @@ function RaceSelector({ onRaceSelect, selectedRaceId }: RaceSelectorProps) {
 
   if (loading) {
     return (
-      <div className="text-background rounded-lg shadow-sm border p-6">
+      <div className="text-background rounded-lg shadow-sm  p-6">
         <div className="animate-pulse space-y-3">
           <div className="h-4 bg-gray-200 rounded w-1/4 mb-4"></div>
           <div className="h-10 bg-gray-200 rounded"></div>
@@ -171,8 +171,8 @@ function CornerSpeedTable({ sessionId, raceName }: CornerSpeedTableProps) {
 
   if (!sessionId) {
     return (
-      <div className="text-background rounded-lg shadow-sm border p-8 text-center">
-        <div className="text-4xl mb-2">🏁</div>
+      <div className="text-background rounded-lg shadow-sm p-8 text-center">
+        <div className="text-4xl mb-2">🏁</div> 
         <h3 className="text-lg font-medium text-background">Select a Race Session</h3>
         <p className="text-sm text-background">Choose a race to view corner speed data.</p>
       </div>
@@ -199,7 +199,7 @@ function CornerSpeedTable({ sessionId, raceName }: CornerSpeedTableProps) {
   }
 
   return (
-    <div className="text-background rounded-lg shadow-sm border p-6">
+    <div className="text-background rounded-lg shadow-sm border p-6 max-sm:w-90">
       <h2 className="text-xl font-semibold mb-2">Corner Speeds – {raceName || 'Unknown Race'}</h2>
       <p className="text-sm text-gray-600 mb-4">
         Total corners: {corners.length} | 
@@ -212,7 +212,7 @@ function CornerSpeedTable({ sessionId, raceName }: CornerSpeedTableProps) {
         <div className="text-center text-gray-500">No corner speed data found.</div>
       ) : (
         <div className="overflow-x-auto">
-          <table className="w-full table-auto border border-gray-300 text-sm">
+          <table className="max-sm:w-10 w-full table-auto border border-gray-300 text-sm">
             <thead className="">
               <tr>
                 <th className="border px-4 py-2 text-left">Corner</th>
@@ -252,7 +252,7 @@ export default function RaceSpeedDashboard() {
   const [selectedRace, setSelectedRace] = useState<Race | null>(null)
 
   return (
-    <div className="h-full lg:h-screen bg-foreground w-auto text-background pt-20 relative">
+    <div className="lg:h-screen bg-foreground w-auto text-background pt-20 relative">
       <div className="max-w-7xl mx-auto space-y-6">
         <div className="grid h-full lg:grid-cols-2 gap-6">
           <RaceSelector
@@ -262,13 +262,13 @@ export default function RaceSpeedDashboard() {
           <CornerSpeedTable
             sessionId={selectedRace?.id || null}
             raceName={selectedRace?.race_name || null}
-          />
+          />  
         </div>
       </div>
-         <footer>
-          <span className='bg-foreground text-white justify-items-center text-center lg:left-124 lg:top-60 w-screen justify-center items-center relative'>
-            Copyright © All right reserved by MHBlog and Maxim harvančík</span>
-        </footer>
+       <span className='bg-foreground text-white justify-items-center text-center w-full lg:top-180 justify-center items-center lg:absolute max-sm:relative'>
+            Copyright © All right reserved by MHBlog and Maxim harvančík
+       </span>
     </div>
+    
   )
 }
