@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Viewport } from "next";
 import { Faster_One, Electrolize } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next"
 
 const electrolize = Electrolize({
   variable: "--font-electrolize",
@@ -39,6 +40,7 @@ export default function RootLayout({
       <body
         className={`${fasterOne.variable} ${electrolize.variable} antialiased`}
       >
+      <Analytics/>
         {children}
       </body>
     </html>
