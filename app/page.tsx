@@ -37,7 +37,7 @@ export default function Home() {
             id='openBtn'
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="bottom-5 max-sm:bottom-5 relative max-sm:block md:block lg:hidden icon-default inline-flex items-center justify-center rounded-md p-2.5 text-white z-50 animation duration-300 transform transition-all"
+              className="bottom-5 max-md:bottom-10 max-sm:bottom-5 relative max-sm:block md:block lg:hidden icon-default inline-flex items-center justify-center rounded-md p-2.5 text-white z-50 animation duration-300 transform transition-all"
             >
               <span className="sr-only">Open main menu</span>
               <Bars3Icon aria-hidden="true" className="size-10 block hover:-scale-y-110 animation duration-300 transition-all transform" />
@@ -88,7 +88,7 @@ export default function Home() {
         )}
 </AnimatePresence>
         <div className='relative w-64 h-full z-50 bg-foreground'>
-          <ul className='text-4xl gap-30 m-5 pb-3 gap-y-10 max-sm:hidden md:hidden lg:flex max-md:flex'>
+          <ul className='text-4xl gap-30 m-5 pb-3 gap-y-10 max-sm:hidden lg:flex md:hidden max-md:hidden'>
             <li><a href='#Latest' className='hover:text-white duration-300'>Latest</a></li>
             <li><a href='SpeedDB' className='hover:text-white duration-300'>SpeedDB</a></li>
             <li><a href='/About' className='hover:text-white duration-300'>About</a></li>
@@ -99,11 +99,13 @@ export default function Home() {
         </header>
 
         <div className='grid grid-cols-2 h-screen relative items-start justify-start right-90 max-sm:right-110' id='Latest'>
+          <a href='/Analysis/2025/Belgium-Grand-Prix'>
           <div className='w-140 max-sm:w-90 hover:opacity-80 duration-300'>
-            <img src="/assets/2025/BritishGP/R/Team_Pace.png"
+            <img src="/assets/2025/BelgiumGP/FP1/Results.png"
             className='w-140 h-75 relative top-15 left-110'/>
-            <p className='relative z-10 text-white left-110 top-15 text-center w-140 max-sm:w-90 bg-white/20'>2025 British Grand Prix Analysis</p>
+            <p className='relative z-10 text-white left-110 top-15 text-center w-140 max-sm:w-90 bg-white/20'>2025 belgium Grand Prix - Friday report</p>
           </div>
+          </a>
         </div>
 
         <footer>
