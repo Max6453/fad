@@ -86,8 +86,8 @@ export default function BelgiumGP() {
 </AnimatePresence>
         <div className='relative w-64 h-full z-50 bg-foreground'>
           <ul className='text-4xl gap-30 m-5 pb-3 gap-y-10 max-sm:hidden lg:flex md:hidden max-md:hidden'>
-            <li><a href='#Latest' className='hover:text-white duration-300'>Latest</a></li>
-            <li><a href='SpeedDB' className='hover:text-white duration-300'>SpeedDB</a></li>
+            <li><a href='/#Latest' className='hover:text-white duration-300'>Latest</a></li>
+            <li><a href='/SpeedDB' className='hover:text-white duration-300'>SpeedDB</a></li>
             <li><a href='/About' className='hover:text-white duration-300'>About</a></li>
             <li><a href='/' className='hover:text-white duration-300'>Contact</a></li>
             <li><a href='/login' className='hover:text-white duration-300'>Login</a></li>

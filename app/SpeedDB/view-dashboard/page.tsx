@@ -20,7 +20,7 @@ export default function SpeedDB() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
   return(
-    <div className="bg-white">
+    <div className="bg-white h-screen">
       <header className="bg-foreground text-background relative">
         <a href="/">
         <h1 className="text-6xl text-center font-fasterOne">SpeedDB</h1>
@@ -39,6 +39,9 @@ export default function SpeedDB() {
       <main className="bg-foreground">
         <RaceSpeedDashboard/>
       </main>
+        <span className="text-md relative text-background bg-foreground w-screen lg:bottom-50 lg:left-90">
+          NOTE: The cornering speeds are now only for fastest car in session and for fastest lap of session
+          </span>
     </div>
   )
 }
