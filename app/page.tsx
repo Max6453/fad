@@ -100,7 +100,7 @@ export default function Home() {
 
         <div className='grid grid-cols-2 h-screen relative items-start justify-start right-90 max-sm:right-110' id='Latest'>
           <div className='w-140 max-sm:w-90 hover:opacity-80 duration-300'>
-            <img src="/assets/2025/BritishGP/R/team_Pace.png"
+            <img src="/assets/2025/BritishGP/R/Team_Pace.png"
             className='w-140 h-75 relative top-15 left-110'/>
             <p className='relative z-10 text-white left-110 top-15 text-center w-140 max-sm:w-90 bg-white/20'>2025 British Grand Prix Analysis</p>
           </div>
