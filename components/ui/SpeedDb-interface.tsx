@@ -265,7 +265,7 @@ export default function RaceSpeedDashboard() {
           />  
         </div>
       </div>
-       <span className='bg-foreground text-white justify-items-center text-center w-full lg:top-180 justify-center items-center lg:absolute max-sm:relative'>
+       <span className='bg-foreground text-white justify-items-center text-center w-full lg:top-180 pt-15 justify-center items-center lg:absolute max-sm:relative'>
             Copyright © All right reserved by MHBlog and Maxim harvančík
        </span>
     </div>

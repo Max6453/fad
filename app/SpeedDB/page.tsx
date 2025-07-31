@@ -30,7 +30,7 @@ export default function SpeedDBHome() {
         <a href="maximharvancik.vercel.app">portfolio</a>
         </ul>
     </main>
-            <footer className="lg:top-78 md:top-85 max-sm:top-10 w-full bg-foreground text-center pr-10 relative">
+            <footer className="lg:top-45 md:top-85 max-sm:top-10 w-full bg-foreground text-center pr-10 relative">
           <span className='bg-foreground text-white text-center items-baseline justify-baseline w-full relative'>
             Copyright © All right reserved by MHBlog and Maxim harvančík</span>
         </footer>
