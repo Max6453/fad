@@ -260,7 +260,7 @@ export default function AdminDashboard() {
             disabled={isLoading}
           />
           <input 
-            placeholder="Race Name" 
+            placeholder="Race Name + session" 
             className="input p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
             value={raceData.race_name} 
             onChange={(e) => setRaceData({ ...raceData, race_name: e.target.value })}

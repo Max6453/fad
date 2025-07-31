@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import * as React from "react"
 import { Dialog, DialogPanel } from '@headlessui/react'
-import { AnimatePresence, motion, transformValue } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { ChevronRight, ChevronLeft, Settings, User, Mail, FileText } from 'lucide-react';
 
 const navigation = [
@@ -15,16 +15,13 @@ const navigation = [
   { name: 'Login', href: '/Login', current: true, id: 5 },
 ];
 
-import Image from "next/image";
 
-export default function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleSidebar = () => setIsOpen(!isOpen);
-
-  return (
-    <div>
-        <header className=" text-background relative z-50 w-full bg-foreground">
+export default function BelgiumGP() {
+      const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+      const [isOpen, setIsOpen] = useState(false);
+    return(
+        <div>
+         <header className=" text-background relative z-50 w-full bg-foreground">
           <span className="text-6xl max-sm:text-5xl relative">
             <a href='/'>
              <h1 className="font-fasterOne pt-5 w-auto hover:scale-95 pl-5 max-sm:pl-0 duration-350">Formula Analysis Dashboard</h1>
@@ -89,8 +86,8 @@ export default function Home() {
 </AnimatePresence>
         <div className='relative w-64 h-full z-50 bg-foreground'>
           <ul className='text-4xl gap-30 m-5 pb-3 gap-y-10 max-sm:hidden lg:flex md:hidden max-md:hidden'>
-            <li><a href='#Latest' className='hover:text-white duration-300'>Latest</a></li>
-            <li><a href='SpeedDB' className='hover:text-white duration-300'>SpeedDB</a></li>
+            <li><a href='/#Latest' className='hover:text-white duration-300'>Latest</a></li>
+            <li><a href='/SpeedDB' className='hover:text-white duration-300'>SpeedDB</a></li>
             <li><a href='/About' className='hover:text-white duration-300'>About</a></li>
             <li><a href='/' className='hover:text-white duration-300'>Contact</a></li>
             <li><a href='/login' className='hover:text-white duration-300'>Login</a></li>
@@ -98,28 +95,58 @@ export default function Home() {
         </div>
         </header>
 
-        <main className='h-screen relative'>
-          <div className='grid grid-cols-2 pl-20 relative top-25'>
-            <div>
-              <a href='Analysis/2025/Belgium-Grand-Prix/Race' className='hover:opacity-90 duration-300'>
-              <img src="assets/2025/BelgiumGP/R/Race_Pace.png"
-              className='w-140 h-75'/>
-              <span className='w-140 h-8 absolute justify-center bg-foreground text-center text-2xl text-white'>Belgium Grand Prix - Race analysis</span>
+        <div className='relative'>
+          <h1 className='text-5xl m-5'>Race Analysis - Belgium Grand Prix</h1>
+          <p className='lg:w-200 xl:w-300 md:w-200 max-sm:w-90 sm:110 text-xl m-5'>
+            Todays 2025 Belgium Grand Prix saw 1 hour and 20 minute long suspended session because of heavy rain.
+            We went racing around 16:25 local time.
+          </p>
+          <p className='lg:w-200 xl:w-300 md:w-200 max-sm:w-90 sm:110 text-xl m-5'>
+            After sprint we approximately knew how the power is divided.
+            Mclaren on top with mercedes, ferrari and red bull taking each other points.
+          </p>
+          <h3 className='text-5xl m-5'>Race start</h3>
+          <p className='lg:w-200 xl:w-300 md:w-200 max-sm:w-90 sm:110 text-xl m-5'>
+            Lando Norris started from pole position. Oscar piastri behind him with Charles Leclerc on P3.
+            LN4 made whole race mistakes but the start was just one big mistake which ulimately cost him the win.
+            he made bad battery management, leaving him on kemmel straight with empty battery. Also the technical problem with battery didn't help either.
+            OP81 could easily overtake him with slipstream into T5. 
+          </p>
+          <p className='lg:w-200 xl:w-300 md:w-200 max-sm:w-90 sm:110 text-xl m-5'>
+            Belgium grand prix started to be less and less entertaining in recent years.
+            We witness i would say the most boring race yet. Minimal overtakes and overall action on track.
+            
+          </p>
+            <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-y-5'>
+              <a href='/assets/2025/belgiumGP/R/Race_Pace.png'>
+              <img src="/assets/2025/belgiumGP/R/Race_Pace.png" alt="" className='hover:opacity-90 duration-150'/>
+              </a>
+              <a href='/assets/2025/belgiumGP/R/Team_Pace.png'>
+              <img src="/assets/2025/belgiumGP/R/Team_Pace.png" alt="" className='hover:opacity-90 duration-150'/>
+              </a>
+              <a href='/assets/2025/belgiumGP/R/Top_Speeds.png'>
+              <img src="/assets/2025/belgiumGP/R/Top_Speeds.png" alt="" className='hover:opacity-90 duration-150'/>
+              </a>
+              <a href='/assets/2025/belgiumGP/R/Tyre_Degradatio.png'>
+              <img src="/assets/2025/belgiumGP/R/Tyre_Degradatio.png" alt="" className='hover:opacity-90 duration-150'/>
               </a>
             </div>
-            <div>
-              <a href='Analysis/2025/Belgium-Grand-Prix/' className='hover:opacity-90 duration-300'>
-              <img src="assets/2025/BelgiumGP/SQ/Sectors.png"
-              className='w-140 h-75'/>
-              <span className='w-140 h-8 absolute justify-center bg-foreground text-center text-2xl text-white'>Belgium Grand Prix - Friday analysis</span>
-              </a>
-            </div>
-          </div>
-        </main>
-        <footer>
-          <span className='bg-foreground text-white text-center items-baseline justify-baseline w-full absolute'>
-            Copyright © All right reserved by MHBlog and Maxim harvančík</span>
-        </footer>
-  </div>
-  );
+
+          <h1 className='text-5xl m-5 pt-10'>Race</h1>
+          <p className='lg:w-200 xl:w-300 md:w-200 max-sm:w-90 sm:110 text-xl m-5'>
+            To be honest, i don't know what to write about this race.
+            Nothing interesting happened, only that LN4 was slowly closing the gap but he made a mistake and this cycle repeated like 3 times.
+            Hamilton's strategy was brilliant.
+            Antonelli's struggling a lot in recent weekeneds.
+            Leclerc and Verstappen literally matched on thousands of second identical race pace.
+            Albon with another amazing position finish.
+          </p>
+            <p className='lg:w-200 xl:w-300 md:w-200 max-sm:w-90 sm:110 text-xl m-5'>
+              There need to be changes either for track or cars.
+              Or we can say goodbye to spa. But this scenario is more likely.
+              Looking forward to budapest.
+            </p>
+        </div>
+        </div>
+    )
 }
