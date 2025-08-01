@@ -12,7 +12,7 @@ const navigation = [
   { name: 'SpeedDB', href: '/SpeedDB', current: false, id: 2 },
   { name: 'About', href: '/', current: false, id: 3 },
   { name: 'Contact', href: '/', current: true, id: 4 },
-  { name: 'Login', href: '/Login', current: true, id: 5 },
+  { name: 'login', href: '/Login', current: true, id: 5 },
 ];
 
 import Image from "next/image";
@@ -98,8 +98,15 @@ export default function Home() {
         </div>
         </header>
 
-        <main className='h-screen relative'>
-          <div className='grid grid-cols-2 pl-20 relative top-25'>
+        <main className='relative'>
+          <div className='grid lg:grid-cols-2 md:grid-cols-1 lg:pl-20 md:pl-10 gap-20 relative top-25'>
+            <div>
+              <a href='Analysis/2025/Hungarian-Grand-Prix/Friday' className='hover:opacity-90 duration-300'>
+              <img src="assets/2025/HungaryGP/FP2/Tyre_Degradation.png"
+              className='w-140 h-75'/>
+              <span className='w-140 h-8 absolute justify-center bg-foreground text-center text-2xl text-white'>Hungarian Grand Prix - Friday analysis</span>
+              </a>
+            </div>
             <div>
               <a href='Analysis/2025/Belgium-Grand-Prix/Race' className='hover:opacity-90 duration-300'>
               <img src="assets/2025/BelgiumGP/R/Race_Pace.png"
@@ -117,7 +124,7 @@ export default function Home() {
           </div>
         </main>
         <footer>
-          <span className='bg-foreground text-white text-center items-baseline justify-baseline w-full absolute'>
+          <span className='bg-foreground lg:top-270 md:top-370 sm:top-370 max-sm:top-370 text-white text-center items-baseline justify-baseline w-full absolute'>
             Copyright © All right reserved by MHBlog and Maxim harvančík</span>
         </footer>
   </div>
