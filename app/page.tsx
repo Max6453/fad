@@ -31,7 +31,7 @@ export default function Home() {
             </a>
           </span>
           <nav aria-label="Global" className="flex items-center justify-between lg:px-8 h-20 max-sm:h-30">
-          <span className='font-electrolize text-2xl md:w-160'>First open formula 1 database to browse average speed on words fastest and slowest corners</span>
+          <span className='font-electrolize text-2xl md:w-160'>First open formula 1 database to browse cornering speed on words fastest and slowest corners</span>
             <div className="absolute right-5 pt-10 pr-5 max-md:pr-0 max-md:right-0 max-md:pt-25">
             <button
             id='openBtn'
@@ -100,6 +100,13 @@ export default function Home() {
 
         <main className='relative'>
           <div className='grid lg:grid-cols-2 md:grid-cols-1 lg:pl-20 md:pl-10 gap-20 relative top-25'>
+             <div>
+              <a href='Analysis/2025/Hungarian-Grand-Prix/Sunday' className='hover:opacity-90 duration-300'>
+              <img src="assets/2025/HungaryGP/FP2/Tyre_Degradation.png"
+              className='w-140 h-75'/>
+              <span className='w-140 h-8 absolute justify-center bg-foreground text-center text-2xl text-white'>Hungarian Grand Prix - Race analysis</span>
+              </a>
+            </div>
             <div>
               <a href='Analysis/2025/Hungarian-Grand-Prix/Friday' className='hover:opacity-90 duration-300'>
               <img src="assets/2025/HungaryGP/FP2/Tyre_Degradation.png"
